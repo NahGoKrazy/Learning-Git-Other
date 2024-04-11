@@ -51,7 +51,7 @@ Menu
             newString += str(int(stringPassword[i]) + 3)
         return int(newString)
 
-    def decode(self):
+    def decode(self): #finsihed tasks
         lengthPassword = len(str(self.encodedPassword))
         stringPassword = str(self.encodedPassword)
         newString = ""
