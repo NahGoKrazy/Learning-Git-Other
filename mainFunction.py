@@ -59,4 +59,4 @@ Menu
             newString += str(int(stringPassword[i]) - 3)
         print(f"The encoded password is {self.encodedPassword}, and the original password is {int(newString)}")
 
-instance = Main()
+instance = Main() ##finished tasks
