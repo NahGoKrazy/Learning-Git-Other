@@ -1,9 +1,5 @@
-class Main:
-    def __init__(self):
-        self.displayMenu()
-    
-    def displayMenu(self):
-        print('''
+def displayMenu():
+    print('''
 Menu
 -------------
 1. Encode
@@ -11,52 +7,60 @@ Menu
 3. Quit
               
 ''')
-        self.captureInput()
-    def captureInput(self):
-        options = [1, 2, 3]
-        while True:
-            menuOptionSelected = input("Please enter an option: ")
-            try:
-                int(menuOptionSelected)
-                break
-            except:
-                continue
-        self.executeOption(int(menuOptionSelected))
-        
-    def executeOption(self, option):
-        match option:
-            case 1:
-                self.getPassword()
-                self.encodedPassword = self.encode(self.password)
-                self.displayMenu()
-            case 2:
-                self.decode()
-                self.displayMenu()
-            
+    captureInput()
 
 
-    def getPassword(self):
-        while True:
-            try:
-                self.password = int(input("Please enter your password to encode: "))
-                break
-            except: 
-                print("invalid input")
+def captureInput():
+    options = [1, 2, 3]
+    while True:
+        menuOptionSelected = input("Please enter an option: ")
+        try:
+            int(menuOptionSelected)
+            break
+        except:
+            continue
+    executeOption(int(menuOptionSelected))
 
-    def encode(self, password):
-        stringPassword = str(password)
-        lengthPassword = len(stringPassword)
-        newString = ""
-        for i in range(lengthPassword): #make dictionary to reorder string
-            newString += str(int(stringPassword[i]) + 3)
-        return int(newString)
 
-    def decode(self): #finsihed tasks
-        lengthPassword = len(str(self.encodedPassword))
-        stringPassword = str(self.encodedPassword)
-        newString = ""
-        for i in range(lengthPassword):
-            newString += str(int(stringPassword[i]) - 3)
-        print(f"The encoded password is {self.encodedPassword}, and the original password is {int(newString)}")
+def executeOption(option):
+    if option == 1:
+        getPassword()
+        global encodedPassword
+        encodedPassword = encode(password)
+        displayMenu()
+    elif option == 2:
+        decode()
+        displayMenu()
 
-instance = Main() ##finished tasks
+
+def getPassword():
+    while True:
+        try:
+            global password
+            password = int(input("Please enter your password to encode: "))
+            break
+        except: 
+            print("Invalid input")
+
+
+def encode(password):
+    stringPassword = str(password)
+    lengthPassword = len(stringPassword)
+    newString = ""
+    for i in range(lengthPassword): 
+        newString += str(int(stringPassword[i]) + 3)
+    return int(newString)
+
+
+def decode():
+    global encodedPassword
+    lengthPassword = len(str(encodedPassword))
+    stringPassword = str(encodedPassword)
+    newString = ""
+    for i in range(lengthPassword):
+        newString += str(int(stringPassword[i]) - 3)
+    print(f"The encoded password is {encodedPassword}, and the original password is {int(newString)}")
+
+
+if __name__ == '__main__':
+    displayMenu()
